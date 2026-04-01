@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend
 } from 'recharts';
 import { useApp } from '../store/AppContext';
-import { fmt, fmtPct, calcMortgagePayment, getVerdict, verdictColor } from '../utils';
+import { fmt, fmtPct, calcMortgagePayment } from '../utils';
 
 function InputField({ label, value, onChange, prefix = '$', suffix = '', step = 1000, min = 0 }: {
   label: string; value: number; onChange: (v: number) => void;
@@ -281,7 +281,7 @@ export default function BRRRRCalc() {
                   <Pie data={pieData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={3} dataKey="value">
                     {pieData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}
                   </Pie>
-                  <Tooltip formatter={(v: number) => fmt(v)} contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }} />
+                  <Tooltip formatter={(v: any) => fmt(v as number)} contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }} />
                   <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
                 </PieChart>
               </ResponsiveContainer>
@@ -298,7 +298,7 @@ export default function BRRRRCalc() {
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
               <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} />
               <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${Math.abs(v / 100).toFixed(0) + 'h'}`} />
-              <Tooltip formatter={(v: number) => fmt(v)} contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', color: '#fff' }} />
+              <Tooltip formatter={(v: any) => fmt(v as number)} contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', color: '#fff' }} />
               <Bar dataKey="income" name="Income" fill="#10b981" radius={[4, 4, 0, 0]} />
               <Bar dataKey="expense" name="Expense" fill="#f43f5e" radius={[4, 4, 0, 0]} />
             </BarChart>

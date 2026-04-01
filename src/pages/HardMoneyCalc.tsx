@@ -340,7 +340,7 @@ export default function HardMoneyCalc() {
                 label={{ value: 'Sale', fill: '#f59e0b', fontSize: 11 }}
               />
               <Tooltip
-                formatter={(v: number) => fmt(v)}
+                formatter={(v: any) => fmt(v as number)}
                 contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', color: '#fff' }}
               />
               <Line

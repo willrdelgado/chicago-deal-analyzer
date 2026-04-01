@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, PieChart, Pie, Cell, Legend
 } from 'recharts';
 import { useApp } from '../store/AppContext';
 import type { Deal } from '../types';
-import { fmt, fmtPct, verdictColor, verdictLabel, marketLabel, marketColor } from '../utils';
+import { fmt, fmtPct, verdictColor, verdictLabel, marketColor } from '../utils';
 
 type SortKey = 'netProfit' | 'arv' | 'purchasePrice' | 'roi' | 'createdAt';
 
@@ -170,7 +170,7 @@ export default function Portfolio() {
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                   <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 9 }} angle={-20} textAnchor="end" />
                   <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-                  <Tooltip formatter={(v: number) => fmt(v)} contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', color: '#fff' }} />
+                  <Tooltip formatter={(v: any) => fmt(v as number)} contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', color: '#fff' }} />
                   <Legend wrapperStyle={{ fontSize: '10px', color: '#94a3b8' }} />
                   <Bar dataKey="ARV" fill="#3b82f6" radius={[3, 3, 0, 0]} />
                   <Bar dataKey="Purchase" fill="#f43f5e" radius={[3, 3, 0, 0]} />
