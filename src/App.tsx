@@ -1,21 +1,23 @@
 import { useState } from 'react';
 import { AppProvider } from './store/AppContext';
+import LiveLookup from './pages/LiveLookup';
 import DealAnalyzer from './pages/DealAnalyzer';
 import BRRRRCalc from './pages/BRRRRCalc';
 import HardMoneyCalc from './pages/HardMoneyCalc';
 import Portfolio from './pages/Portfolio';
 
-type Tab = 'analyzer' | 'brrrr' | 'hardmoney' | 'portfolio';
+type Tab = 'lookup' | 'analyzer' | 'brrrr' | 'hardmoney' | 'portfolio';
 
 const TABS: { id: Tab; label: string; short: string }[] = [
-  { id: 'analyzer', label: 'Deal Analyzer', short: 'Analyzer' },
-  { id: 'brrrr', label: 'BRRRR Calculator', short: 'BRRRR' },
-  { id: 'hardmoney', label: 'Hard Money', short: 'Hard $' },
-  { id: 'portfolio', label: 'Portfolio', short: 'Portfolio' },
+  { id: 'lookup',    label: '🔍 Live Lookup',      short: 'Lookup' },
+  { id: 'analyzer',  label: 'Deal Analyzer',        short: 'Analyzer' },
+  { id: 'brrrr',     label: 'BRRRR Calculator',     short: 'BRRRR' },
+  { id: 'hardmoney', label: 'Hard Money',            short: 'Hard $' },
+  { id: 'portfolio', label: 'Portfolio',             short: 'Portfolio' },
 ];
 
 function AppInner() {
-  const [tab, setTab] = useState<Tab>('analyzer');
+  const [tab, setTab] = useState<Tab>('lookup');
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -57,8 +59,9 @@ function AppInner() {
 
       {/* Page Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-        {tab === 'analyzer' && <DealAnalyzer />}
-        {tab === 'brrrr' && <BRRRRCalc />}
+        {tab === 'lookup'    && <LiveLookup onApplied={() => setTab('analyzer')} />}
+        {tab === 'analyzer'  && <DealAnalyzer />}
+        {tab === 'brrrr'     && <BRRRRCalc />}
         {tab === 'hardmoney' && <HardMoneyCalc />}
         {tab === 'portfolio' && <Portfolio />}
       </main>
